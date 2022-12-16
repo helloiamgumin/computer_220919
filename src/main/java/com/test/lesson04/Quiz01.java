@@ -27,11 +27,11 @@ public class Quiz01 extends HttpServlet {
 				+ " (`realtorId`, `address`, `area`, `type`, `price`, `rentPrice`)"
 				+ " values"
 				+ " (3, '헤라펠리스 101동 5305호', 350, '매매', 1500000, null)";
-		try {
-			ms.update(insertQuery);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+//		try {
+//			ms.update(insertQuery);
+//		} catch (SQLException e1) {
+//			e1.printStackTrace();
+//		}
 		
 		PrintWriter out = response.getWriter();
 		String selectQuery = "select * from `real_estate` order by `id` desc limit 10";
