@@ -1,52 +1,37 @@
-<%@page import="com.test.common.MysqlService"%>
-<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Quiz02</title>
+<title>Hong당무 마켓</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <style>
+    	a:hover {text-decoration:none;}
+    	header {height:150px; background-color:#FF8000;}
+    	.menu {height:120px; background-color:pink; font-size: larger;}
+    	.contents {height:630px;}
+    	footer {height:100px;}
+    </style>
 </head>
 <body>
-<%
-	MysqlService ms = MysqlService.getInstance();
-	ms.connect();
-	
-	String selectQuery = "select * from `favorite` order by `id` desc";
-	ResultSet rs = ms.select(selectQuery);
-%>
-	<div class="container">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>사이트</th>
-					<th>사이트 주소</th>
-					<th>삭제</th>
-				</tr>
-			</thead>
-			<tbody>
-			<%
-				while (rs.next()) {
-			%>
-				<tr>
-					<td><%= rs.getString("name") %></td>
-					<td><a href="<%= rs.getString("url") %>"><%= rs.getString("url") %></a></td>
-					<td><a href="/lesson04/quiz02_delete?id=<%= rs.getInt("id") %>">삭제하기</a></td>
-				</tr>
-			<%
-				}
-			%>	
-			</tbody>
-		</table>
+	<div id="wrap" class="container">
+		<header class="d-flex align-items-center justify-content-center">
+			<jsp:include page="header.jsp" />
+		</header>
+		<nav class="menu d-flex align-items-center">
+			<jsp:include page="menu.jsp" />
+		</nav>
+		<section class="contents">
+			<jsp:include page="contents.jsp" />
+		</section>
+		<footer class="d-flex align-items-center justify-content-center">
+			<jsp:include page="footer.jsp" />
+		</footer>
 	</div>
-	
-<%
-	ms.disconnect();
-%>	
 </body>
 </html>

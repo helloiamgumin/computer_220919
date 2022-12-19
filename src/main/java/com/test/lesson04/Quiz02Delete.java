@@ -15,12 +15,12 @@ public class Quiz02Delete extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String url = request.getParameter("url");
+		int id = Integer.valueOf(request.getParameter("id"));
 		
 		MysqlService ms = MysqlService.getInstance();
 		ms.connect();
 		
-		String deleteQuery = "delete from `list` where `url` = " + url;
+		String deleteQuery = "delete from `favorite` where `id` = " + id;
 		try {
 			ms.update(deleteQuery);
 		} catch (SQLException e) {
@@ -29,6 +29,6 @@ public class Quiz02Delete extends HttpServlet {
 		
 		ms.disconnect();
 		
-		response.sendRedirect("/lesson04/quiz02/quiz02_1.jsp");
+		response.sendRedirect("/lesson04/quiz02/quiz02.jsp");
 	}
 }

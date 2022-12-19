@@ -22,7 +22,7 @@ public class Quiz02Insert extends HttpServlet {
 		MysqlService ms = MysqlService.getInstance();
 		ms.connect();
 
-		String insertQuery = "insert into `list`"
+		String insertQuery = "insert into `favorite`"
 				+ "(`name`, `url`)"
 				+ "values"
 				+ "('" + name + "', '" + url + "')";
@@ -35,6 +35,6 @@ public class Quiz02Insert extends HttpServlet {
 
 		ms.disconnect();
 
-		response.sendRedirect("/lesson04/quiz02/quiz02_1.jsp");
+		response.sendRedirect("/lesson04/quiz02/quiz02.jsp");
 	}
 }
